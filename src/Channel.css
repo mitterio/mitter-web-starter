@@ -1,0 +1,86 @@
+.chat-parent {
+    background-color: green;
+    display: flex;
+    top: 69px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.chat-parent > .channel-list {
+    width: 350px;
+    background-color: #D3E2FE;
+    border-right: 1pt solid black;
+}
+
+.chat-parent > .chat-window {
+    flex: 1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-parent > .channel-list > .channel-tile {
+    padding: 20pt;
+    border-bottom: 1pt solid black;
+}
+
+.chat-parent > .channel-list > .active {
+    border-bottom: 2pt solid black;
+    font-weight: bold;
+    background-color: #082289;
+    color: white;
+}
+
+.chat-parent > .chat-window > .message-container {
+    flex: 1;
+    overflow-y: scroll;
+    padding: 0 3pt;
+}
+
+.chat-parent > .chat-window > .message-input-box {
+    display: flex;
+    bottom: 0;
+    right: 0;
+    left: 350px;
+    padding: 5pt;
+    margin-bottom: auto;
+}
+
+.message-input-box > .message-input {
+    flex: 1;
+    font-size: 12pt;
+    padding: 5pt;
+}
+
+.message-input-box > .send-message {
+    font-size: 12pt;
+    padding: 5pt;
+}
+
+.chat-parent > .chat-window > .message {
+    margin: 10pt;
+}
+
+.message > .message-block {
+    display: inline-block;
+}
+
+.message > .message-block > .sender {
+    font-size: 10pt;
+}
+
+.message > .message-block > .message-content {
+    background-color: #D3E2FE;
+    padding: 10pt;
+    margin-top: 2pt;
+}
+
+.message.self > .message-block > .sender {
+    display: none;
+}
+
+.message.self {
+    text-align: right;
+}

@@ -20,3 +20,8 @@ server/node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# config files
+config/config.json
+config/credentials.json
+
