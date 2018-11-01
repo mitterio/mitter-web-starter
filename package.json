@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@mitter-io/core": "^0.5.11",
+    "@mitter-io/node": "^0.5.11-1",
     "@mitter-io/web": "^0.5.11-1",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
