@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const usersController = require('./routes/users.controller');
+const userStorageController = require('./routes/user-storage.controller');
 
 const app = express();
 
@@ -17,13 +18,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'build')));
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
 
 app.use('/users', usersController);
+app.use('/api/users', userStorageController);
+
+/*
 app.get('*', (req, res) => {
     res.sendFile('build/index.html', { root: global });
 });
+*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

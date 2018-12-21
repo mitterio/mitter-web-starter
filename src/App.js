@@ -1,4 +1,4 @@
-import { isNewMessagePayload } from '@mitter-io/core'
+import { isNewMessagePayload, isParticipantChangedEventPayload } from '@mitter-io/core'
 import React, { Component } from 'react'
 import ChannelComponent from './ChannelComponent'
 import './App.css'
@@ -13,8 +13,9 @@ class App extends Component {
             channelMessages: {}
         }
 
-        this.setChannels = this.setChannels.bind(this)
-        this.newMessage = this.newMessage.bind(this)
+        this.setChannels = this.setChannels.bind(this);
+        this.newMessage = this.newMessage.bind(this);
+        this.newChannel = this.newChannel.bind(this);
     }
 
     setChannels(participatedChannels) {
@@ -22,13 +23,32 @@ class App extends Component {
 
         participatedChannels.forEach((participatedChannel) => {
             channelMessages[participatedChannel.channel.identifier] = []
-        })
+        });
 
         this.setState((prevState) => {
             return Object.assign({}, prevState, {
                 channelMessages
             })
-        })
+        });
+    }
+
+    newChannel(channelId) {
+        this.setState((prevState) => {
+            if (channelId in this.state.channelMessages) {
+                return prevState;
+            } else {
+                console.log(prevState);
+
+                const newState = Object.assign({}, prevState, {
+                    channelMessages: Object.assign({}, prevState.channelMessages, {
+                        [channelId]: []
+                    })
+                });
+
+                console.log(newState);
+                return newState;
+            }
+        });
     }
 
     newMessage(messagePayload) {
@@ -39,9 +59,8 @@ class App extends Component {
                 prevState.channelMessages[channelId]
                     .find(x => x.messageId === messagePayload.message.messageId) !== undefined
             ) {
-                return prevState
+                return prevState;
             }
-
 
             return Object.assign({}, prevState, {
                 channelMessages: Object.assign({}, prevState.channelMessages, {
@@ -95,6 +114,10 @@ class App extends Component {
 
             if (isNewMessagePayload(payload)) {
                 this.newMessage(payload);
+            } else if (isParticipantChangedEventPayload(payload)) {
+                if (payload.oldStatus === undefined && payload.newStatus !== undefined && payload.newStatus !== null) {
+                    this.newChannel(payload.channelId.identifier);
+                }
             }
         })
     }

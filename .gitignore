@@ -25,3 +25,7 @@ yarn-error.log*
 config/config.json
 config/credentials.json
 
+.bootstrap.lock
+
+/.idea
+
