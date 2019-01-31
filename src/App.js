@@ -10,26 +10,53 @@ class App extends Component {
         super();
 
         this.state = {
-            channelMessages: {}
+            channelMessages: {},
+            channelMessageManagers: {}
         }
 
         this.setChannels = this.setChannels.bind(this);
         this.newMessage = this.newMessage.bind(this);
         this.newChannel = this.newChannel.bind(this);
+        this.fetchPreviousPage = this.fetchPreviousPage.bind(this);
+    }
+
+    fetchPreviousPage(channelId) {
+        let { channelMessageManagers } = this.state
+        channelMessageManagers[channelId].prevPage().then(messageList => {
+            const _list = this.state.channelMessages[channelId].slice()
+
+            for (let i=0; i < messageList.length; i++) {
+                _list.unshift(messageList[i]);
+            }
+
+            this.setState({
+                channelMessages: {
+                    [channelId]: _list
+                }
+            })
+        });
     }
 
     setChannels(participatedChannels) {
         const channelMessages = {}
+        const channelMessageManagers = {}
 
         participatedChannels.forEach((participatedChannel) => {
             channelMessages[participatedChannel.channel.identifier] = []
+            channelMessageManagers[participatedChannel.channel.identifier] = this.props.mitter.clients()
+                .messages().getPaginatedMessagesManager(participatedChannel.channel.identifier)
         });
 
         this.setState((prevState) => {
             return Object.assign({}, prevState, {
-                channelMessages
+                channelMessages,
+                channelMessageManagers
             })
         });
+
+        Object.keys(channelMessageManagers).forEach((channelId) => {
+            this.fetchPreviousPage(channelId)
+        })
     }
 
     newChannel(channelId) {
@@ -37,11 +64,12 @@ class App extends Component {
             if (channelId in this.state.channelMessages) {
                 return prevState;
             } else {
-                console.log(prevState);
-
                 const newState = Object.assign({}, prevState, {
                     channelMessages: Object.assign({}, prevState.channelMessages, {
                         [channelId]: []
+                    }),
+                    channelMessageManagers: Object.assign({}, prevState.channelMessageManagers, {
+                        [channelId]: this.props.mitter.clients().messages().getPaginatedMessagesManager
                     })
                 });
 
@@ -137,6 +165,7 @@ class App extends Component {
                   mitter={this.props.mitter}
                   channelMessages={this.state.channelMessages}
                   selfUserId={this.props.loggedUser}
+                  fetchPreviousPage={this.fetchPreviousPage}
               />
           </div>
         );

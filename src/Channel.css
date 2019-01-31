@@ -33,7 +33,7 @@
     color: white;
 }
 
-.chat-parent > .chat-window > .message-container {
+.message-container {
     flex: 1;
     overflow-y: scroll;
     padding: 0 3pt;

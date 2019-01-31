@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@mitter-io/core": "0.5.11-2",
-    "@mitter-io/web": "0.5.11-2",
-    "@mitter-io/node": "^0.5.11-1",
+    "@mitter-io/core": "0.6.35",
+    "@mitter-io/node": "0.6.35",
+    "@mitter-io/react-scl": "^0.6.35",
+    "@mitter-io/web": "0.6.35",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "debug": "~2.6.3",

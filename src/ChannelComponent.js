@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { createMessageViewProducer, MessageListManager } from '@mitter-io/react-scl'
 import './Channel.css'
 
 export default class ChannelComponent extends Component {
@@ -13,6 +14,25 @@ export default class ChannelComponent extends Component {
         this.updateTypedMessage = this.updateTypedMessage.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.keyPressHandler = this.keyPressHandler.bind(this);
+
+        this.messageViewProducer = createMessageViewProducer(
+            (message) => true,
+            (message) => {
+                const isSelfMessage = this.props.selfUserId === message.senderId.identifier
+
+                return (
+                <div className={ 'message' + (isSelfMessage ? ' self' : '')}>
+                    <div className='message-block'> 
+                        <span className='sender' ></span>
+
+                        <div className='message-content'>
+                            {message.textPayload}
+                        </div>
+                    </div>
+                </div>
+                )
+            }
+        )
     }
 
     componentDidUpdate() {
@@ -47,23 +67,14 @@ export default class ChannelComponent extends Component {
         const activeChannelMessages =
             this.props.channelMessages[this.state.activeChannel]
 
-
-        return activeChannelMessages.map(message => {
-            const isSelfMessage =
-                this.props.selfUserId === message.senderId.identifier
-
-            return (
-                <div key={message.messageId} className={ 'message' + (isSelfMessage ? ' self' : '') }>
-                    <div className='message-block'>
-                        <span className='sender'>{message.senderId.identifier}</span>
-
-                        <div className='message-content'>
-                            {message.textPayload}
-                        </div>
-                    </div>
-                </div>
-            )
-        })
+        return (
+            <MessageListManager
+                messages={activeChannelMessages}
+                defaultView={this.messageViewProducer.produceView}
+                producers={[this.messageViewProducer]}
+                onEndCallback={() => { this.props.fetchPreviousPage(this.state.activeChannel) }}
+            />
+        )
     }
 
     sendMessage() {
