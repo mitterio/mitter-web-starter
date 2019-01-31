@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 
 class Userboard extends Component {
     constructor() {
-        super();
+        super({});
 
         this.state = {
             users: []
-        }
+        };
 
         fetch('/users')
             .then(response => response.json())
@@ -24,12 +24,12 @@ class Userboard extends Component {
                     Select a user to begin
                 </h2>
 
-                { this.renderUserList(users) }
+                { Userboard.renderUserList(users) }
             </div>
         )
     }
 
-    renderUserList(users) {
+    static renderUserList(users) {
         return users.map((user) => <div key={user}>
            <a href={`/user/${user}`}>{user}</a>
         </div>)
