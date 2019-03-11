@@ -1,58 +1,27 @@
-# Express React Starter
+# mitter-web-starter
 
-This is a template for using Express and React in the same project. It is based on Create React App.
+Clone this repo:
 
-Read the article: [Introducing Express React Starter](https://medium.com/burke-knows-words/introducing-express-react-starter-b6d299206a3a)
+    git clone https://github.com/mitterio/mitter-web-starter.git
 
-OR...
+Then install the dependencies using yarn (you can also use npm):
 
-## Prerequisites
-* [create-react-app](https://github.com/facebookincubator/create-react-app)
+    cd mitter-web-starter
+    yarn
 
-## Installing
+Then copy the two files in the `config/` directory:
 
-```bash
-git clone 'this-repo-url' app-name
-cd app-name
-npm install
-```
+    cp config/credentials.json.template config/credentials.json
+    cp config/config.json.template config/config.json
 
-## Running The App
+And edit the two files adding the following data:
 
-The template can be run in development, or in production. For development, use the following workflow.
+**config.json** Add your application id
 
-### Start the Express Server
+**credential.json** Add your access key/secret
 
-```bash
-node server/server.js
-```
+Once that is done, simply start the server using:
 
-### Start Create React App
+    yarn run
 
-In a different terminal tab...
 
-```bash
-npm start
-```
-
-![Imgur](http://i.imgur.com/f7Nlvx4.png)
-
-The "Welcome to React" is a message that comes from the Express server. 
-
-### What Is Happening Here?
-
-Create React App and the Express server are running on different processes. This is so that React can still use in memory Webpack to do hot reloads really fast.
-
-All AJAX/fetch requests to `/api` are sent back to the Express server which is serving all `/api` routes from the `routes/index.js` file. This is done via a proxy setup in the `package.json` file.
-
-## Building For Production
-
-In production, you want Express to serve up your app.
-
-### Build React App
-
-```bash
-npm build
-```
-
-Now simply visit the Express app at 'http://localhost:3001' and you will see your app served from the 'build' folder. That's all there is to it!
