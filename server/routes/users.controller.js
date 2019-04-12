@@ -10,7 +10,8 @@ const mitter = Mitter.forNode(
     {
         accessKey: credentials.mitterAccessKey,
         accessSecret: credentials.mitterAccessSecret
-    }
+    },
+    config.mitterApiUrl || 'https://api.mitter.io'
 );
 
 const userAuthClient = mitter.clients().userAuth();
