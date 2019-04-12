@@ -12,7 +12,9 @@ const userPatternMatch = (new URL(document.location.href).pathname.match(regex))
 
 if (userPatternMatch !== null) {
     const loggedUser = (new URL(document.location.href).pathname.match(regex)[1])
-    const mitter = Mitter.forWeb(config.mitterApplicationId)
+    const mitter = Mitter.forWeb(
+        config.mitterApplicationId, [], config.mitterApiUrl || 'https://api.mitter.io'
+    )
 
     ReactDOM.render(
         <App

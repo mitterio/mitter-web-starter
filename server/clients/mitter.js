@@ -6,5 +6,7 @@ module.exports = require('@mitter-io/node').Mitter.forNode(
     {
         accessKey: credentials.mitterAccessKey,
         accessSecret: credentials.mitterAccessSecret
-    }
+    },
+    config.mitterApiUrl || 'https://api.mitter.io'
 );
+
