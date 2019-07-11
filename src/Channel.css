@@ -1,10 +1,9 @@
 .chat-parent {
     background-color: green;
     display: flex;
-    top: 69px;
-    position: absolute;
     width: 100%;
-    bottom: 0;
+    flex:1;
+    flex-direction: row;
 }
 
 .chat-parent > .channel-list {
@@ -35,17 +34,13 @@
 
 .message-container {
     flex: 1;
-    overflow-y: scroll;
     padding: 0 3pt;
 }
 
 .chat-parent > .chat-window > .message-input-box {
     display: flex;
-    bottom: 0;
-    right: 0;
-    left: 350px;
     padding: 5pt;
-    margin-bottom: auto;
+    border-top: 1px solid grey;
 }
 
 .message-input-box > .message-input {
@@ -83,4 +78,8 @@
 
 .message.self {
     text-align: right;
+}
+
+.ReactVirtualized__Grid.ReactVirtualized__List {
+    outline: none;
 }
