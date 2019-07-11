@@ -5,7 +5,7 @@
   "dependencies": {
     "@mitter-io/core": "0.5.11-2",
     "@mitter-io/web": "0.5.11-2",
-    "@mitter-io/node": "^0.5.11-1",
+    "@mitter-io/node": "^0.6.45",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "debug": "~2.6.3",

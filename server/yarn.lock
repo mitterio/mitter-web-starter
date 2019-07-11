@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@mitter-io/core@^0.5.11":
-  version "0.5.11"
-  resolved "https://registry.yarnpkg.com/@mitter-io/core/-/core-0.5.11.tgz#050b13a4f3aef8cc4e32d807738813d33bbbdd0f"
-  integrity sha512-korPYXzRs/DQqQbhtEsPdHHKjmc/sWjn+IhUdvoqGTve7zAWs/kaGqd1wc5HvwIDA2Vjk35GiS08uM1xmOiFFQ==
+"@mitter-io/core@^0.6.45":
+  version "0.6.45"
+  resolved "https://registry.yarnpkg.com/@mitter-io/core/-/core-0.6.45.tgz#bb90bc91265b138f67c9bf35ee0f521f31e3528b"
+  integrity sha512-0abbZhJS9A4Xmk2DreiMCUmNgnELe7xn1Q1wAAcEQ34Dm2FQ6KnZMuD/XRtPmup+bpZhHLJY/p3TPRs7mE/k3g==
   dependencies:
-    "@mitter-io/models" "^0.5.11"
+    "@mitter-io/models" "^0.6.45"
     "@stomp/stompjs" "^4.0.7"
     "@types/isomorphic-fetch" "^0.0.34"
     "@types/lodash.camelcase" "^4.3.4"
@@ -21,19 +21,19 @@
     urijs "^1.19.1"
     whatwg-fetch "^2.0.4"
 
-"@mitter-io/models@^0.5.11":
-  version "0.5.11"
-  resolved "https://registry.yarnpkg.com/@mitter-io/models/-/models-0.5.11.tgz#69a59c8629a05060a027deac9b2dda0ba81bd0b2"
-  integrity sha512-MJ0FZ1NQMICtFVq2op0CcNTdvdpOM9rBnuOQDsCk2CA8QURa+70yxrGdRrByo4oUYoaNJ/nuyuWoOUJaAX8xCg==
+"@mitter-io/models@^0.6.45":
+  version "0.6.45"
+  resolved "https://registry.yarnpkg.com/@mitter-io/models/-/models-0.6.45.tgz#12530306a2507a0489fb07c76b3294b1a84059fe"
+  integrity sha512-0WBTDU5+gcD+tDfpUHN3lGyVEJl+EBO35RS3HSDUtkjfky1Lqu8EoZONRpuue0+lZV7L/vGf3e/o5mK10rQySw==
   dependencies:
     s3-publish "^1.0.9"
 
-"@mitter-io/node@^0.5.11-1":
-  version "0.5.11-1"
-  resolved "https://registry.yarnpkg.com/@mitter-io/node/-/node-0.5.11-1.tgz#6ea8a0af6f59a92c67e9e4b4364d68e24669ccab"
-  integrity sha512-s1iu3FOVA2vu8DWicVD0Y+VnyRCLoNH4zZfVj381uyvkC2bI7aGForlFfIb0ZFTmFSTJsaLjEKrs8kU8kRRsWA==
+"@mitter-io/node@^0.6.45":
+  version "0.6.45"
+  resolved "https://registry.yarnpkg.com/@mitter-io/node/-/node-0.6.45.tgz#8eac67303fc453010b60167165ffbcb71029eb01"
+  integrity sha512-KZ3dQD9oGs51TDyofJo3sAJTnkV6Fygy0XEA4nLm/CFM5bNOkGXqnGpUhD2KNTOtl957NsWR0/K8lS4juHUqCQ==
   dependencies:
-    "@mitter-io/core" "^0.5.11"
+    "@mitter-io/core" "^0.6.45"
     "@types/md5" "^2.1.32"
     "@types/randomstring" "^1.1.6"
     axios "^0.18.0"
