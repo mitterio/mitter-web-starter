@@ -4,14 +4,8 @@ var process = require('process');
 var express = require('express');
 var router = express.Router();
 var Mitter = require('@mitter-io/node').Mitter;
+const mitter = require('./../clients/mitter');
 
-const mitter = Mitter.forNode(
-    config.mitterApplicationId,
-    {
-        accessKey: credentials.mitterAccessKey,
-        accessSecret: credentials.mitterAccessSecret
-    }
-);
 
 const userAuthClient = mitter.clients().userAuth();
 const userClient = mitter.clients().users();

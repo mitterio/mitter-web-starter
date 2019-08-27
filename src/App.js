@@ -37,15 +37,12 @@ class App extends Component {
             if (channelId in this.state.channelMessages) {
                 return prevState;
             } else {
-                console.log(prevState);
-
                 const newState = Object.assign({}, prevState, {
                     channelMessages: Object.assign({}, prevState.channelMessages, {
                         [channelId]: []
                     })
                 });
 
-                console.log(newState);
                 return newState;
             }
         });
@@ -126,7 +123,9 @@ class App extends Component {
         return (
             <div className='App'>
                 <h2 className='application-title'>
-                  My Chat App
+                    <div class="title">
+                        My Chat App
+                    </div>
 
                   <div className='user-label'>
                       Welcome, <strong>{this.props.loggedUser}</strong>
