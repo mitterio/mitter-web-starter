@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createMessageViewProducer, MessageListManager, MessageWindowManager } from '@mitter-io/react-scl'
+import { createMessageViewProducer, MessageWindowManager } from '@mitter-io/react-scl'
 import './Channel.css'
 
 export default class ChannelComponent extends Component {
@@ -44,7 +44,6 @@ export default class ChannelComponent extends Component {
     }
 
     renderChannelList() {
-        debugger
         return Object.keys(this.props.channelMessages).map(channelId => {
             const isChannelActive = this.state.activeChannel === channelId
 

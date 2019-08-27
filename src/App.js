@@ -78,7 +78,6 @@ class App extends Component {
                     })
                 });
 
-                console.log(newState);
                 return newState;
             }
         });
