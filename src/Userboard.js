@@ -6,7 +6,7 @@ class Userboard extends Component {
 
         this.state = {
             users: []
-        }
+        };
 
         fetch('/users')
             .then(response => response.json())
