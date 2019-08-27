@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createMessageViewProducer, MessageListManager } from '@mitter-io/react-scl'
+import { createMessageViewProducer, MessageWindowManager } from '@mitter-io/react-scl'
 import './Channel.css'
 
 export default class ChannelComponent extends Component {
@@ -68,12 +68,21 @@ export default class ChannelComponent extends Component {
             this.props.channelMessages[this.state.activeChannel]
 
         return (
-            <MessageListManager
-                messages={activeChannelMessages}
-                defaultView={this.messageViewProducer.produceView}
-                producers={[this.messageViewProducer]}
-                onEndCallback={() => { this.props.fetchPreviousPage(this.state.activeChannel) }}
-            />
+          <MessageWindowManager
+            messages={activeChannelMessages || []}
+            producers={[this.messageViewProducer]}
+            defaultView={(message) => {
+              return <div
+                style={{'borderTop': '1px solid black'}}>{message.textPayload}</div>
+            }}
+            fetchNewerMessages={(channelId, after) => {return Promise.resolve([])}}
+            fetchOlderMessages={this.props.fetchPreviousPage}
+            loader={<React.Fragment />}
+            mitter={this.props.mitter}
+            channelId={this.state.activeChannel}
+            minRowHeight={50}
+            fixedHeight={false}
+          />
         )
     }
 

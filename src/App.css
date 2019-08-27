@@ -1,21 +1,38 @@
 .App {
-    position: absolute;
+    position: relative;
     width: 100%;
+    height: 100%;
     bottom: 0;
     top: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 }
 
 .application-title {
     margin: 0;
-    padding: 15pt;
+    width: 100%;
+    display: flex;
+    height: 50px;
+    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
     border-bottom: 1pt solid black;
     color: white;
     background-color: #741090;
 }
 
+.title {
+    align-items: center;
+    padding-left: 10px;
+    display: flex;
+}
+
 .user-label {
     font-size: 10pt;
-    float: right;
+    display: flex;
+    align-items: center;
     position: relative;
     font-weight: normal;
+    padding-right: 10px;
 }

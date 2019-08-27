@@ -17,12 +17,17 @@ class App extends Component {
         this.setChannels = this.setChannels.bind(this);
         this.newMessage = this.newMessage.bind(this);
         this.newChannel = this.newChannel.bind(this);
-        this.fetchPreviousPage = this.fetchPreviousPage.bind(this);
     }
 
-    fetchPreviousPage(channelId) {
+    fetchPreviousPage = (channelId, before) => {
         let { channelMessageManagers } = this.state
-        channelMessageManagers[channelId].prevPage().then(messageList => {
+        const activeChannelMessageManager = channelMessageManagers[channelId]
+
+        if (before) {
+            activeChannelMessageManager.before = before
+        }
+
+        return activeChannelMessageManager.prevPage().then(messageList => {
             const _list = this.state.channelMessages[channelId].slice()
 
             for (let i=0; i < messageList.length; i++) {
@@ -31,9 +36,12 @@ class App extends Component {
 
             this.setState({
                 channelMessages: {
+                  ...this.state.channelMessages,
                     [channelId]: _list
                 }
             })
+
+            return messageList.reverse()
         });
     }
 
@@ -53,10 +61,6 @@ class App extends Component {
                 channelMessageManagers
             })
         });
-
-        Object.keys(channelMessageManagers).forEach((channelId) => {
-            this.fetchPreviousPage(channelId)
-        })
     }
 
     newChannel(channelId) {
@@ -73,7 +77,6 @@ class App extends Component {
                     })
                 });
 
-                console.log(newState);
                 return newState;
             }
         });
@@ -154,7 +157,9 @@ class App extends Component {
         return (
             <div className='App'>
                 <h2 className='application-title'>
-                  My Chat App
+                    <div class="title">
+                        My Chat App
+                    </div>
 
                   <div className='user-label'>
                       Welcome, <strong>{this.props.loggedUser}</strong>
