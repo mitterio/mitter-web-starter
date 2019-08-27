@@ -46,7 +46,6 @@ class App extends Component {
     }
 
     setChannels(participatedChannels) {
-        debugger
         const channelMessages = {}
         const channelMessageManagers = {}
 
